@@ -46,3 +46,4 @@ data/mongod.lock
 data/WiredTiger.turtle
 data/WiredTiger.wt
 data/WiredTigerHS.wt
+data/metrics.interim
