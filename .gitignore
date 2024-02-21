@@ -48,3 +48,5 @@ data/WiredTiger.wt
 data/WiredTigerHS.wt
 data/metrics.interim
 data/diagnostic.data/metrics.interim
+
+ProjetChatBack/node_modules

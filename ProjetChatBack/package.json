@@ -1,0 +1,28 @@
+{
+  "name": "projetchatback",
+  "version": "1.0.0",
+  "description": "API REST pour ProjetChat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArthurOnWeb/ProjetChat/ProjetChatBack"
+  },
+  "keywords": [
+    "API",
+    "REST",
+    "NodeJS",
+    "Redis",
+    "MongoDB"
+  ],
+  "author": "Arthur and Mouheb",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.3",
+    "redis": "^4.6.13"
+  }
+}
