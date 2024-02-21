@@ -3,4 +3,4 @@ mongod.lock
 WiredTiger.turtle
 WiredTiger.wt
 WiredTigerHS.wt
-metrics.interim
+diagnosic.data/metrics.interim

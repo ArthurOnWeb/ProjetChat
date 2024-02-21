@@ -47,3 +47,4 @@ data/WiredTiger.turtle
 data/WiredTiger.wt
 data/WiredTigerHS.wt
 data/metrics.interim
+data/diagnosic.data/metrics.interim
