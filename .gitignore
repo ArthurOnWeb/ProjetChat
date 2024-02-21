@@ -1,13 +1,13 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+ProjetChatFront/dist
+ProjetChatFront/tmp
+ProjetChatFront/out-tsc
+ProjetChatFront/bazel-out
 
 # Node
-/node_modules
+ProjetChatFront/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -31,12 +31,18 @@ yarn-error.log
 # Miscellaneous
 /.angular/cache
 .sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
+ProjetChatFront/connect.lock
+ProjetChatFront/coverage
+ProjetChatFront/libpeerconnection.log
 testem.log
 /typings
 
 # System files
 .DS_Store
 Thumbs.db
+
+data/WiredTiger.lock
+data/mongod.lock
+data/WiredTiger.turtle
+data/WiredTiger.wt
+data/WiredTigerHS.wt
