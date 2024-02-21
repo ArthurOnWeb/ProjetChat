@@ -1,13 +1,13 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-ProjetChatFront/dist
-ProjetChatFront/tmp
-ProjetChatFront/out-tsc
-ProjetChatFront/bazel-out
+chat-app/dist
+chat-app/tmp
+chat-app/out-tsc
+chat-app/bazel-out
 
 # Node
-ProjetChatFront/node_modules
+chat-app/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -31,9 +31,9 @@ yarn-error.log
 # Miscellaneous
 /.angular/cache
 .sass-cache/
-ProjetChatFront/connect.lock
-ProjetChatFront/coverage
-ProjetChatFront/libpeerconnection.log
+chat-app/connect.lock
+chat-app/coverage
+chat-app/libpeerconnection.log
 testem.log
 /typings
 
