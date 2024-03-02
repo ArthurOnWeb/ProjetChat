@@ -41,12 +41,14 @@ testem.log
 .DS_Store
 Thumbs.db
 
-data/WiredTiger.lock
-data/mongod.lock
-data/WiredTiger.turtle
-data/WiredTiger.wt
-data/WiredTigerHS.wt
-data/metrics.interim
-data/diagnostic.data/metrics.interim
-
 ProjetChatBack/node_modules
+data/collection-2-1687215199191161101.wt
+data/collection-4-1687215199191161101.wt
+data/index-3-1687215199191161101.wt
+data/index-5-1687215199191161101.wt
+data/index-6-1687215199191161101.wt
+data/mongod.lock
+data/sizeStorer.wt
+data/WiredTiger.turtle
+data/diagnostic.data/metrics.2024-02-28T17-49-50Z-00000
+data/diagnostic.data/metrics.2024-02-21T09-43-16Z-00000
