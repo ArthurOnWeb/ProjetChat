@@ -46,6 +46,7 @@ def verifier_authentification():
 
 # Endpoint pour créer un utilisateur
  
+
 # Endpoint pour envoyer un message
 @app.route('/chats/<conversation_id>/messages', methods=['POST'])
 def envoyer_message(conversation_id):
