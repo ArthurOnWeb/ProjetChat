@@ -4,13 +4,16 @@ Created on Thu Feb 22 10:31:38 2024
 
 @author: hp
 """
-import os
 from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
+from flask_cors import CORS
 import redis
 from pymongo import MongoClient
+import os
+from bson import ObjectId
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})  # Activer CORS pour le port 4200
 PORT = int(os.environ.get('PORT', 3000))
 
 # Connect to MongoDB
@@ -18,7 +21,7 @@ app.config['MONGO_URI'] = 'mongodb://localhost:27017/info834'
 mongo = PyMongo(app)
 client = MongoClient('mongodb://localhost:27017/')
 db = client['info834']
-collection_conversations = db['conversations']
+collection_conversations = db['chats']
 # Connect to Redis
 redis_client = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
 
@@ -42,7 +45,7 @@ def verifier_authentification():
     else:
         return jsonify({'error': 'Les données d\'authentification sont requises'}), 400
 
- 
+
 # Endpoint pour créer un utilisateur
 @app.route('/utilisateurs', methods=['POST'])
 def creer_utilisateur():
@@ -67,19 +70,16 @@ def envoyer_message(conversation_id):
     message_data = request.json
     if message_data:
         # Insérer le message dans la conversation spécifiée dans la base de données MongoDB
-        result = collection_conversations.update_one(
-
-            {'_id': conversation_id},
+        result = mongo.db.chats.update_one(
+            {'_id': ObjectId(conversation_id)},
             {'$push': {'messages': message_data}}
         )
-        # Vérifier si la mise à jour a réussi
         if result.modified_count == 1:
             return jsonify({'message': 'Message envoyé avec succès'}), 201
         else:
             return jsonify({'error': 'Conversation introuvable'}), 404
     else:
         return jsonify({'error': 'Les données du message sont requises'}), 400
-
 
 @app.route('/chats', methods=['POST'])
 def creer_conversation():
@@ -89,13 +89,13 @@ def creer_conversation():
         participants = data.get('participants')  # Liste des participants à la conversation
 
         # Créer une nouvelle conversation
-        conversation = {
+        chats= {
             'participants': participants,
             'messages': []  # Initialiser la liste des messages à vide
         }
 
         # Insérer la conversation dans la base de données
-        result = collection_conversations.insert_one(conversation)
+        result = collection_conversations.insert_one(chats)
 
         # Retourner l'ID de la conversation créée
         return jsonify({'message': 'Conversation créée avec succès', 'id': str(result.inserted_id)}), 201

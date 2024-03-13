@@ -46,15 +46,15 @@ def create_user():
 def send_message():
     # Données du message à envoyer
     message_data = {
-        "expediteur": {"_id": "65d716d6bf13b296b7109749", "nom": "Alice"},
+        "expediteur": {"_id": "65e21b432d85d3e960c873e5", "nom": "Tom"},
         "contenu": "weshhh",
-        "timestamp": "2024-02-28T19:40:00Z"
+        "timestamp": "2024-03-12T19:40:00Z"
     }
 
     # ID de la conversation
-    conversation_id = "65e5f84b1294cfe0ff3088b5"
+    conversation_id = "65f1816cea929c4893702cba"
 
-    # URL de l'endpoint
+ # URL de l'endpoint
     url = f'http://localhost:3000/chats/{conversation_id}/messages'
 
     # Envoi de la requête POST avec les données JSON du message
@@ -68,7 +68,7 @@ def create_conversation():
     # Données de la conversation à envoyer
     conversation_data = {
         "nom": "Conversation entre Alice et Bob",
-        "participants": ["Alice", "Bob"]
+        "participants": ["Tom", "Bob"]
     }
 
     # URL de l'endpoint
