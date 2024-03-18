@@ -18,6 +18,8 @@ interface Message {
 
 @Component({
   selector: 'app-chat-page',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './chat-page.component.html',
   styleUrls: ['./chat-page.component.css']
 })
