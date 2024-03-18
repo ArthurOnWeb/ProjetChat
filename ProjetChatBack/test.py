@@ -79,6 +79,53 @@ def create_conversation():
 
     # Affichage de la réponse
     print(response.json())
+    
+import requests
+
+def tester_endpoint_noms_utilisateurs():
+    # URL de l'endpoint
+    url = 'http://localhost:3000/utilisateurs/noms'
+
+    try:
+        # Envoyer la requête GET à l'endpoint
+        reponse = requests.get(url)
+
+        # Vérifier que la requête a réussi
+        if reponse.status_code == 200:
+            # Extraire les données JSON de la réponse
+            data = reponse.json()
+            print('Liste des utilisateurs récupérée avec succès :')
+            for email in data['utilisateurs']:
+                print(email)
+        else:
+            print(f'Erreur lors de la récupération des utilisateurs (code d\'état {reponse.status_code})')
+    except Exception as e:
+        print(f'Erreur lors de l\'envoi de la requête : {e}')
+
+def tester_endpoint_verification_conversation():
+    # URL de l'endpoint
+    url = 'http://localhost:3000/chats/participants'
+
+    # Données à envoyer dans la requête POST
+    data = {
+        "participants": ["Tom", "Bob"]
+    }
+
+    try:
+        # Envoyer la requête POST à l'endpoint avec les données JSON
+        reponse = requests.post(url, json=data)
+
+        # Vérifier que la requête a réussi
+        if reponse.status_code == 200:
+            # Extraire les données JSON de la réponse
+            resultat = reponse.json()
+            print(resultat['message'])
+            if 'conversation_id' in resultat:
+                print(f'ID de la conversation : {resultat["conversation_id"]}')
+        else:
+            print(f'Erreur lors de la vérification de la conversation (code d\'état {reponse.status_code})')
+    except Exception as e:
+        print(f'Erreur lors de l\'envoi de la requête : {e}')
 
 if __name__ == "__main__":
-    authentification()
+    tester_endpoint_noms_utilisateurs()
