@@ -28,7 +28,7 @@ login(): void {
       localStorage.setItem('token', response.token);
       localStorage.setItem('username', this.username);
       this.authService.setLoggedIn(true);  
-      this.router.navigate(['/home-page']);
+      this.router.navigate(['/chat-page']);
     },
     (error) => {
       console.error('Login failed:', error);

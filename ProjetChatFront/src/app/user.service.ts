@@ -48,7 +48,9 @@ export class UserService {
     else{
       return null
     }
-    
-
   }
+  getUsersNames(): Observable<any> {
+    return this.http.get(`${this.apiUrl}utilisateurs/noms`);
+  }
+  
 }
