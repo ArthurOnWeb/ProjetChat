@@ -16,17 +16,6 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})  # Activer CORS pour le port 4200
 PORT = int(os.environ.get('PORT', 3000))
 
-# Route to handle the preflight OPTIONS request
-@app.route('/utilisateurs', methods=['OPTIONS'])
-def handle_options():
-    # Add the necessary CORS headers to allow the request
-    response = jsonify({'message': 'Preflight request accepted'})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'POST')
-    return response
-
-
 # Connect to MongoDB
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/info834'
 mongo = PyMongo(app)
@@ -49,7 +38,7 @@ def verifier_authentification():
         utilisateur = mongo.db.utilisateurs.find_one({'email': email, 'mot_de_passe': mot_de_passe})
         if utilisateur:
             # Convertir ObjectId en chaîne et utiliser la chaîne pour la clé Redis
-            redis_client.set(str(utilisateur['_id']), 'connecté')
+            # redis_client.set(str(utilisateur['_id']), 'connecté')
             return jsonify({'message': 'Authentification réussie', 'utilisateur_id': str(utilisateur['_id'])}), 200
         else:
             return jsonify({'error': 'Email ou mot de passe incorrect'}), 401

@@ -24,7 +24,7 @@ export class SignUpComponent {
   register(){
 
     this.errorMessage = "";
-    this.userService.register(this.username, this.password, this.firstname)
+    this.userService.register(this.username, this.firstname,this.password)
       .subscribe(
         (response: any) => {
           console.log('User registered successfully');

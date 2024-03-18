@@ -81,4 +81,4 @@ def create_conversation():
     print(response.json())
 
 if __name__ == "__main__":
-    send_message()
+    authentification()
