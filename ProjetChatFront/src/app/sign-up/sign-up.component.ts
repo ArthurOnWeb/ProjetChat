@@ -31,7 +31,7 @@ export class SignUpComponent {
           localStorage.setItem('token', response.token);
           localStorage.setItem('username', this.username);
           this.authService.setLoggedIn(true);  // Met à jour l'état de connexion
-          this.router.navigate(['/home-page']);
+          this.router.navigate(['/chat-page']);
         },
         (error) => {
           console.log("Username : ",this.username)

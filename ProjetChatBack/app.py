@@ -116,6 +116,22 @@ def recuperer_noms_utilisateurs():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/chats/participants', methods=['POST'])
+def verifier_conversation():
+    try:
+        # Récupérer les données de la requête
+        data = request.json
+        participants = data.get('participants')  # Liste des participants à vérifier dans la conversation
+
+        # Rechercher une conversation avec les deux participants dans la base de données
+        conversation = collection_conversations.find_one({'participants': participants})
+
+        if conversation:
+            return jsonify({'message': 'La conversation existe', 'conversation_id': str(conversation['_id'])}), 200
+        else:
+            return jsonify({'message': 'La conversation n\'existe pas'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 # Start the server
 if __name__ == '__main__':
