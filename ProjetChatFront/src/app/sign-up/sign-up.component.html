@@ -8,23 +8,23 @@
 </head>
 <body>
     <div class="container">
-        <span class="logo">ProjetChat</span>
+        <span class="logo"></span>
     </div>
     <div class="signup-container">
         <div class="signup-card">
             <h1 class="signup-title">Create an account</h1> 
             <form class="signup-form" action="#">
                 <div class="form-group">
-                    <label for="email">Username</label>
+                    <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control" placeholder="Your username" required [(ngModel)]="username">
+                </div>
+                <div class="form-group">
+                    <label for="nom">Firstname</label>
+                    <input type="firstname" name="firstname" id="firstname" placeholder="Your name" class="form-control" required [(ngModel)]="firstname">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" placeholder="••••••••" class="form-control" required [(ngModel)]="password">
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirm password</label>
-                    <input type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" class="form-control" required [(ngModel)]="confirmPassword">
                 </div>
                 <button type="submit" class="btn btn-primary" (click)="register()">Create an account</button>
                 <div *ngIf="errorMessage" class="error-message">

@@ -9,18 +9,30 @@ import jwt_decode from 'jwt-decode';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'http://localhost:3000/';
 
   public currentUser!:  Observable<any>;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  login(username: string, password: string): Observable<any>{
-    return this.http.post(`${this.apiUrl}/login`, { username, password });
+  login(email: string, motDePasse: string): Observable<any> {
+    const authData = {
+      email, // Équivalent à "email": email,
+      mot_de_passe: motDePasse // Utilisation de snake_case pour la clé, comme côté backend
+    };
+  
+    return this.http.post(`${this.apiUrl}authentification`, authData);
   }
+  
 
-  register(username: string, password: string, confirmPassword: string) {
-    return this.http.post(`${this.apiUrl}/createUser`, { username, password, confirmPassword });
+  register(email: string, nom: string, motDePasse: string) {
+    const utilisateurData = {
+      email,    // Equivalent à "email": email,
+      nom,      // Equivalent à "nom": nom,
+      mot_de_passe: motDePasse,  // Attention à l'utilisation des snake_case pour les clés comme côté backend
+    };
+    
+    return this.http.post(`${this.apiUrl}utilisateurs`, utilisateurData);
   }
 
   isLogged(){
@@ -36,7 +48,9 @@ export class UserService {
     else{
       return null
     }
-    
-
   }
+  getUsersNames(): Observable<any> {
+    return this.http.get(`${this.apiUrl}utilisateurs/noms`);
+  }
+  
 }

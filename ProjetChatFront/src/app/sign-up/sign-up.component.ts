@@ -14,7 +14,7 @@ import { AuthService } from '../auth.service';
 export class SignUpComponent {
   username ="";
   password = "";
-  confirmPassword ="";
+  firstname ="";
   errorMessage ="";
 
   constructor(private userService: UserService, private router: Router, private authService :AuthService){}
@@ -24,7 +24,7 @@ export class SignUpComponent {
   register(){
 
     this.errorMessage = "";
-    this.userService.register(this.username, this.password, this.confirmPassword)
+    this.userService.register(this.username, this.firstname,this.password)
       .subscribe(
         (response: any) => {
           console.log('User registered successfully');
@@ -37,7 +37,7 @@ export class SignUpComponent {
           console.log("Username : ",this.username)
           console.log("Password : ", this.password)
           console.error('Registration failed:', error);
-          if(this.username==="" || this.password==="" || this.confirmPassword===""){
+          if(this.username==="" || this.password==="" || this.firstname===""){
             this.errorMessage = "You must fill all input"
           }
           else{
