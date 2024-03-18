@@ -101,6 +101,22 @@ def creer_conversation():
         return jsonify({'message': 'Conversation créée avec succès', 'id': str(result.inserted_id)}), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+@app.route('/utilisateurs/noms', methods=['GET'])
+def recuperer_noms_utilisateurs():
+    try:
+        # Récupérer tous les utilisateurs de la base de données
+        utilisateurs = mongo.db.utilisateurs.find({}, {"email": 1, "_id": 0})
+        
+        # Extraire les emails (ou noms) des documents MongoDB et les stocker dans une liste
+        noms_utilisateurs = [utilisateur["email"] for utilisateur in utilisateurs]
+        
+        # Retourner la liste des noms d'utilisateurs
+        return jsonify({'utilisateurs': noms_utilisateurs}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 # Start the server
 if __name__ == '__main__':
     app.run(port=PORT)
