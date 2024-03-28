@@ -1,104 +1,62 @@
 :root {
-    --primary-color: #d35400; /* Couleur plus foncée pour le bouton */
-    --text-on-primary: #ffffff; /* Couleur du texte sur le bouton primaire */
-    --error-color: #721c24;
-    --error-background: #f8d7da;
-    --error-border: #f5c6cb;
-    --font-color: #333;
-    --link-color: #007bff;
-    --link-hover-color: #0056b3;
-    --background-color: #fff;
-    --border-color: #ccc;
-}
-
-body {
+    --primary-color: #0078FF; /* Bleu Messenger */
+    --text-on-primary: #ffffff; /* Texte blanc */
+    --font-color: #333; /* Gris foncé pour le texte */
+    --background-color: #f4f4f4; /* Arrière-plan légèrement gris */
+    --border-color: #ccc; /* Bordures gris clair */
+  }
+  
+  body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.login-container {
+  }
+  
+  .login-container {
     width: 100%;
+    max-width: 360px; /* Ajustement pour ressembler à Messenger */
+    padding: 20px;
     background-color: var(--background-color);
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    max-width: 400px;
-    padding: 40px;
-    transition: box-shadow 0.3s ease;
-}
-
-.login-container:hover {
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
-}
-
-.login-card {
-    padding: 20px;
-}
-
-.login-form .form-group {
-    margin-bottom: 25px;
-}
-
-.login-form label {
-    font-size: 16px;
-    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .login-form label {
+    display: block;
+    margin-bottom: 5px;
     color: var(--font-color);
-}
-
-.login-form .form-control {
+  }
+  
+  .login-form .form-control {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
-    transition: border 0.3s ease;
-}
-
-.login-form .form-control:focus {
-    border-color: var(--primary-color);
-}
-
-.login-form .btn-primary {
+    border-radius: 20px; /* Bords arrondis pour ressembler à Messenger */
+    box-sizing: border-box;
+  }
+  
+  .login-form .btn-primary {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
     background-color: var(--primary-color);
-    color: var(--text-on-primary);
     border: none;
-    padding: 12px 24px;
-    border-radius: 4px;
+    border-radius: 20px; /* Bords arrondis */
+    color: var(--text-on-primary);
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login-form .btn-primary:hover {
-    background-color: darken(var(--primary-color), 10%);
-}
-
-.error-message {
-    padding: 12px;
-    background-color: var(--error-background);
-    color: var(--error-color);
-    border: 1px solid var(--error-border);
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
-.sign-up-text {
-    font-size: 14px;
-    color: #666;
-    text-align: center;
-}
-
-.sign-up-text a {
-    color: var(--link-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.sign-up-text a:hover {
-    color: var(--link-hover-color);
-    text-decoration: underline;
-}
+  }
+  
+  .login-form .btn-primary:hover {
+    background-color: darken(var(--primary-color), 5%);
+  }
+  
