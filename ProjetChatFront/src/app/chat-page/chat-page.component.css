@@ -7,7 +7,7 @@
 .users-list {
   width: 250px;
   overflow-y: auto;
-  background-color: #f7f7f7; /* Légèrement plus clair pour contraster avec le chat */
+  background-color: #f7f7f7; /* Contraste avec le chat */
   border-right: 1px solid #ddd;
 }
 
@@ -25,52 +25,62 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
 }
 
 .chat-header {
-  padding: 20px;
-  background-color: #0078FF; /* Bleu Messenger */
-  color: #fff;
-  text-align: center;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  background-color: #00B2FF; /* Bleu Messenger */
+  color: white;
+  padding: 10px;
 }
+
+.chat-logo {
+  width: 50px; /* Taille réduite du logo */
+  height: auto;
+  margin-right: 50px;
+}
+
 
 .messages {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 20px;
-  background-color: #e5e5e5; /* Fond des messages légèrement gris */
+  background-color: #E5E5E5; /* Fond des messages */
+  padding: 10px; /* Réduction de l'espacement */
 }
 
 .message {
-  margin-bottom: 12px;
+  margin-bottom: 8px; /* Réduction de l'espace entre les messages */
 }
 
 .message-content {
-  display: inline-block;
-  padding: 10px 15px;
-  border-radius: 20px;
-  max-width: 75%;
-  background-color: #f1f0f0;
+  max-width: 60%;
+  padding: 4px 8px; /* Padding réduit pour des bulles plus petites */
+  border-radius: 15px; /* Rayon ajusté pour garder l'aspect arrondi */
+  color: #000;
 }
 
+
 .mine {
-  background-color: #0078FF; /* Bleu Messenger */
-  color: #ffffff;
+  background-color: #0078FF; /* Bleu pour les messages envoyés */
+  color: white; /* Texte blanc */
   margin-left: auto;
+}
+
+.message:not(.mine) {
+  background-color: #ffffff; /* Vert clair pour les messages reçus */
 }
 
 .message-input {
   display: flex;
   padding: 10px;
-  background-color: #f7f7f7;
+  background-color: #f0f0f0;
 }
 
 .message-input input {
-  flex-grow: 1;
-  padding: 10px 15px;
+  flex: 1;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 20px;
+  border-radius: 18px;
   outline: none;
 }

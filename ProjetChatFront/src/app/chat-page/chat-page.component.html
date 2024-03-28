@@ -5,6 +5,7 @@
     </div>
   </div>
   <div class="chat-container" *ngIf="selectedUser">
+    <img src="assets/logo.png" alt="Logo" class="chat-logo">
     <div class="chat-header">{{ selectedUser?.name }}</div>
     <div class="messages">
       <div class="message" *ngFor="let message of messages">

@@ -2,8 +2,9 @@
     --primary-color: #0078FF; /* Bleu Messenger */
     --text-on-primary: #ffffff; /* Texte blanc */
     --font-color: #333; /* Gris foncé pour le texte */
-    --background-color: #f4f4f4; /* Arrière-plan légèrement gris */
+    --background-color: #E9EFF1; /* Arrière-plan plus dynamique */
     --border-color: #ccc; /* Bordures gris clair */
+    --input-focus-color: #66BFFF; /* Couleur de mise en évidence des inputs */
   }
   
   body {
@@ -18,45 +19,51 @@
   }
   
   .login-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 360px; /* Ajustement pour ressembler à Messenger */
-    padding: 20px;
-    background-color: var(--background-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 360px;
+    transition: transform 0.3s ease-in-out;
   }
   
-  .login-form .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .login-form label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--font-color);
+  .login-container:hover {
+    transform: translateY(-5px);
   }
   
   .login-form .form-control {
-    width: 100%;
-    padding: 10px;
     border: 1px solid var(--border-color);
-    border-radius: 20px; /* Bords arrondis pour ressembler à Messenger */
-    box-sizing: border-box;
+    padding: 10px 15px;
+    border-radius: 20px;
+    transition: border-color 0.3s;
+  }
+  
+  .login-form .form-control:focus {
+    border-color: var(--input-focus-color);
+    box-shadow: 0 0 0 2px rgba(102, 191, 255, 0.5);
   }
   
   .login-form .btn-primary {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
     background-color: var(--primary-color);
     border: none;
-    border-radius: 20px; /* Bords arrondis */
+    padding: 10px 20px;
+    border-radius: 20px;
     color: var(--text-on-primary);
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
   }
   
   .login-form .btn-primary:hover {
     background-color: darken(var(--primary-color), 5%);
   }
+  .login-logo {
+    display: block;
+    margin: 0 auto 20px auto; /* Centrer le logo et ajouter une marge en bas */
+    width: 100px; /* Ajustez la largeur selon la taille souhaitée */
+    height: auto; /* Garder les proportions du logo */
+  }
+  
   
