@@ -21,4 +21,17 @@ export class ChatService {
     const url = `${this.apiUrl}`;
     return this.http.post(url, conversationData);
   }
+
+// Méthode pour vérifier l'existence d'une conversation
+verifyConversation(participants: string[]): Observable<any> {
+  const url = `${this.apiUrl}/participants`;
+  return this.http.post(url, { participants });
+}
+
+// Méthode pour récupérer les messages d'une conversation
+getMessages(conversationId: string): Observable<any> {
+  const url = `${this.apiUrl}/${conversationId}/messages`;
+  return this.http.get(url);
+}
+
 }

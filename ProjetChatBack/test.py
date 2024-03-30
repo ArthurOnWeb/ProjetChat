@@ -52,7 +52,7 @@ def send_message():
     }
 
     # ID de la conversation
-    conversation_id = "65f1816cea929c4893702cba"
+    conversation_id = "66059105567e2fc66f95555b"
 
  # URL de l'endpoint
     url = f'http://localhost:3000/chats/{conversation_id}/messages'
@@ -101,10 +101,37 @@ def tester_endpoint_noms_utilisateurs():
             print(f'Erreur lors de la récupération des utilisateurs (code d\'état {reponse.status_code})')
     except Exception as e:
         print(f'Erreur lors de l\'envoi de la requête : {e}')
+        
+def test_recuperer_messages():
+    # ID de la conversation pour le test
+    conversation_id = "66059105567e2fc66f95555b"
+    # URL de l'endpoint
+    url = f'http://localhost:3000/chats/{conversation_id}/messages'
 
-# Appeler la fonction de test
-tester_endpoint_noms_utilisateurs()
+    # Envoi de la requête GET pour récupérer les messages
+    response = requests.get(url)
+    # Convertir la réponse en JSON
+    data = response.json()
+    print(data)
 
+import requests
+import json
 
-if __name__ == "__main__":
-    tester_endpoint_noms_utilisateurs()
+def test_recuperer_id_par_nom():
+    # URL de l'endpoint à tester
+    url = 'http://localhost:3000/utilisateurs/nom'
+
+    # Données à envoyer dans la requête (le nom de l'utilisateur à rechercher)
+    donnees_requete = {
+        'nom': 'a1' 
+    }
+
+    # Envoi de la requête POST
+    reponse = requests.post(url, json=donnees_requete)
+
+    # Affichage de la réponse
+    print(f"Status Code: {reponse.status_code}")
+    print(f"Body: {reponse.json()}")
+
+if __name__ == '__main__':
+    test_recuperer_id_par_nom()

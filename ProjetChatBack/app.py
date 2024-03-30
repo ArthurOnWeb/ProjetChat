@@ -132,6 +132,79 @@ def verifier_conversation():
             return jsonify({'message': 'La conversation n\'existe pas'}), 404
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+@app.route('/chats/<conversation_id>/messages', methods=['GET'])
+def recuperer_messages(conversation_id):
+    try:
+        # Trouver la conversation par son ID
+        conversation = collection_conversations.find_one({'_id': ObjectId(conversation_id)})
+
+        if conversation:
+            # Récupérer les messages de la conversation
+            messages = conversation.get('messages', [])
+            return jsonify({'messages': messages}), 200
+        else:
+            return jsonify({'error': 'Conversation introuvable'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/utilisateurs/nom', methods=['POST'])
+def recuperer_id_par_nom():
+    donnees_requete = request.json
+    if donnees_requete:
+        nom = donnees_requete.get('nom')
+        if nom:
+            # Rechercher l'utilisateur par son nom
+            utilisateur = mongo.db.utilisateurs.find_one({'nom': nom})
+            if utilisateur:
+                # Si l'utilisateur est trouvé, renvoyer son ID
+                return jsonify({'message': 'Utilisateur trouvé', 'utilisateur_id': str(utilisateur['_id'])}), 200
+            else:
+                # Si aucun utilisateur n'est trouvé avec ce nom
+                return jsonify({'error': 'Aucun utilisateur trouvé avec ce nom'}), 404
+        else:
+            return jsonify({'error': 'Le nom est requis'}), 400
+    else:
+        return jsonify({'error': 'Les données de la requête sont requises'}), 400
+
+@app.route('/utilisateurs/email', methods=['POST'])
+def recuperer_email_par_nom():
+    donnees_requete = request.json
+    if donnees_requete:
+        nom = donnees_requete.get('nom')
+        if nom:
+            # Rechercher l'utilisateur par son nom
+            utilisateur = mongo.db.utilisateurs.find_one({'nom': nom}, {'email': 1})
+            if utilisateur and 'email' in utilisateur:
+                # Si l'utilisateur est trouvé, renvoyer son email
+                return jsonify({'message': 'Email trouvé', 'email': utilisateur['email']}), 200
+            else:
+                # Si aucun utilisateur n'est trouvé avec ce nom ou si l'email n'est pas disponible
+                return jsonify({'error': 'Aucun utilisateur trouvé avec ce nom ou email non disponible'}), 404
+        else:
+            return jsonify({'error': 'Le nom est requis'}), 400
+    else:
+        return jsonify({'error': 'Les données de la requête sont requises'}), 400
+    
+@app.route('/utilisateurs/nom-par-email', methods=['POST'])
+def recuperer_nom_par_email():
+    donnees_requete = request.json
+    if donnees_requete:
+        email = donnees_requete.get('email')
+        if email:
+            # Rechercher l'utilisateur par son email
+            utilisateur = mongo.db.utilisateurs.find_one({'email': email}, {'nom': 1})
+            if utilisateur and 'nom' in utilisateur:
+                # Si l'utilisateur est trouvé, renvoyer son nom
+                return jsonify({'message': 'Nom trouvé', 'nom': utilisateur['nom']}), 200
+            else:
+                # Si aucun utilisateur n'est trouvé avec cet email ou si le nom n'est pas disponible
+                return jsonify({'error': 'Aucun utilisateur trouvé avec cet email ou nom non disponible'}), 404
+        else:
+            return jsonify({'error': 'L\'email est requis'}), 400
+    else:
+        return jsonify({'error': 'Les données de la requête sont requises'}), 400
+
 
 # Start the server
 if __name__ == '__main__':

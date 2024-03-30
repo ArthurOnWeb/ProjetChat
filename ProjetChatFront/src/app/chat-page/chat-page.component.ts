@@ -24,14 +24,35 @@ interface Message {
 })
 export class ChatPageComponent implements OnInit {
   users: User[] = [];
-  selectedUser: User | null = null;
   messages: Message[] = [];
   newMessage = '';
+ 
+
+  defaultUser: User = {
+    id: "default-id",
+    name: "Invité"
+  };
+  currentUserId: string = this.defaultUser.id;
+  selectedUser: User = this.defaultUser;
+  
 
   constructor(private userService: UserService, private chatService: ChatService) {}
 
   ngOnInit() {
+    this.loadCurrentUser(); // Charger l'utilisateur courant dès l'initialisation du composant
     this.loadUsers();
+  }
+
+  loadCurrentUser() {
+    const userEmail = localStorage.getItem('username'); // Récupérer l'email de l'utilisateur du localStorage
+    if (userEmail) {
+      this.userService.getEmailByName(userEmail).subscribe({
+        next: (response) => {
+          this.currentUserId = response.utilisateur_id; // Mettre à jour l'ID de l'utilisateur courant
+        },
+        error: (err) => console.error(err)
+      });
+    }
   }
 
   loadUsers() {
@@ -45,9 +66,45 @@ export class ChatPageComponent implements OnInit {
 
   selectUser(user: User) {
     this.selectedUser = user;
-    // Vous devrez implémenter une méthode pour charger les messages pour un utilisateur sélectionné
-    // Cela dépendra de la structure de votre API et des données disponibles
+  
+    // Identifiants des participants (exemple simplifié)
+    const currentUserId = this.currentUserId
+    const participants = [currentUserId, user.id];
+  
+    // Vérifier l'existence de la conversation
+    this.chatService.verifyConversation(participants).subscribe({
+      next: (response) => {
+        if (response.conversation_id) {
+          // Si la conversation existe, chargez les messages
+          this.loadMessages(response.conversation_id);
+        } else {
+          // La conversation n'existe pas, vous pouvez ici gérer la création d'une nouvelle conversation
+          console.log('La conversation n\'existe pas, envisagez de créer une nouvelle conversation.');
+        }
+      },
+      error: (err) => console.error(err)
+    });
   }
+  
+  loadMessages(conversationId: string) {
+    this.chatService.getMessages(conversationId).subscribe({
+      next: (response) => {
+        // Assurez-vous que currentUserId est non null avant d'utiliser les messages
+        if (this.currentUserId) {
+          this.messages = response.messages.map((msg: any) => ({
+            text: msg.contenu,
+            isMine: msg.expediteur._id === this.currentUserId,
+            userId: msg.expediteur._id
+          }));
+        } else {
+          console.error('Current user ID is not set.');
+        }
+      },
+      error: (err) => console.error(err)
+    });
+  }
+  
+    
 
   sendMessage() {
     if (!this.selectedUser || this.newMessage.trim() === '') {

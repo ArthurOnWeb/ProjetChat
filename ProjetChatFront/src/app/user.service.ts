@@ -52,5 +52,14 @@ export class UserService {
   getUsersNames(): Observable<any> {
     return this.http.get(`${this.apiUrl}utilisateurs/noms`);
   }
+  getIdByName(nom: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}utilisateurs/nom`, { nom });
+  }
+  getEmailByName(nom: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}utilisateurs/email`, { nom });
+  }  
+  getNameByEmail(nom: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}utilisateurs/nom-par-email`, { nom });
+  }  
   
 }
